@@ -27,23 +27,14 @@ volatility regime shifts?
 - South Africa: FTSE/JSE All Share (or a broad JSE index series)
 
 ### Returns
-Use log returns:
-```
-r_t = ln(P_t) - ln(P_{t-1})
-```
+Use log returns: $r_t = \ln(P_t) - \ln(P_{t-1})$
 Either de-mean or allow a small mean term in the model.
 
 ### Forecast target (volatility proxy)
 Pick at least one (two is stronger):
-- Squared returns (noisy):
-  ```
-  proxy_t = r_t^2
-  ```
-- Realized volatility from a rolling window (more stable):
-  ```
-  RV_t = sum_{i=0..h-1} r_{t-i}^2
-  ```
-  Common `h` values: 5, 10, 21 trading days. Forecast `RV_{t+1}` or `RV_{t+h}`.
+- Squared returns (noisy): $proxy_t = r_t^2$
+- Realized volatility from a rolling window (more stable): $RV_t = \sum_{i=0}^{h-1} r_{t-i}^2$
+  Common `h` values: 5, 10, 21 trading days. Forecast $RV_{t+1}$ or $RV_{t+h}$.
 
 Tip: using `log(RV)` as the prediction target stabilizes scale and reduces outlier impact.
 
@@ -62,20 +53,14 @@ Tip: using `log(RV)` as the prediction target stabilizes scale and reduces outli
 
 ### Hybrid A: GARCH backbone + LSTM/Transformer correction
 Fit GARCH/EGARCH, forecast baseline variance, then learn a multiplicative correction:
-```
-V_hat = V_garch * exp(m_hat)
-```
+$\hat{V} = V_{garch} \cdot \exp(\hat{m})$
 This preserves volatility structure while letting the network learn nonlinear effects.
 
 ### Hybrid B: Time-varying GARCH parameters (RNN-driven)
 Let a recurrent model output time-varying `omega_t, alpha_t, beta_t` under constraints:
-```
-omega_t > 0, alpha_t >= 0, beta_t >= 0, alpha_t + beta_t < 1
-```
+$\omega_t > 0, \alpha_t \ge 0, \beta_t \ge 0, \alpha_t + \beta_t < 1$
 Then update:
-```
-sigma_t^2 = omega_t + alpha_t * eps_{t-1}^2 + beta_t * sigma_{t-1}^2
-```
+$\sigma_t^2 = \omega_t + \alpha_t \cdot \epsilon_{t-1}^2 + \beta_t \cdot \sigma_{t-1}^2$
 
 ## Transformer design (avoid overfit)
 - Causal masking (no peeking)
@@ -84,8 +69,8 @@ sigma_t^2 = omega_t + alpha_t * eps_{t-1}^2 + beta_t * sigma_{t-1}^2
 - Enforce positivity via `exp` or `softplus`
 
 Minimal feature set:
-- Lagged returns `r_{t-k}` for `k=1..L`
-- Lagged squared returns `r_{t-k}^2`
+- Lagged returns $r_{t-k}$ for `k=1..L`
+- Lagged squared returns $r_{t-k}^2$
 - Optional: lagged GARCH variance and rolling stats
 
 ## Evaluation design (implemented vs planned)
@@ -109,9 +94,7 @@ Regime definition options:
 
 ### Targets
 - Forward realized variance over the next `H` trading days:
-  ```
-  V_t = sum_{i=1..H} r_{t+i}^2
-  ```
+  $V_t = \sum_{i=1}^{H} r_{t+i}^2$
   (You can later swap in realized volatility or OHLC estimators.)
 
 ### Models
