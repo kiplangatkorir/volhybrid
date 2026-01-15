@@ -103,8 +103,8 @@ Regime definition options:
   - EGARCH(1,1)
   - GJR-GARCH(1,1)
 - Direct neural models:
-  - LSTM regressor (predicts $log(V_t)$)
-  - Causal Transformer regressor (predicts $log(V_t)$)
+  - LSTM regressor (predicts `log(V_t)`)
+  - Causal Transformer regressor (predicts `log(V_t)`)
 - Hybrid:
   - Multiplicative correction: $V_hat = V_garch * exp(m_hat)$
     where the NN learns residual dynamics.
