@@ -77,7 +77,7 @@ Minimal feature set:
 
 ### Implemented now
 - Rolling-origin backtest with periodic refits
-- Metrics: RMSE on `log(V)`, QLIKE, MAE, MAPE
+- Metrics: RMSE on `log(V)`, QLIKE
 
 ### Planned (not yet in code)
 - RMSE/MAE on `RV` or `log(RV)` for multiple targets
@@ -119,7 +119,15 @@ Regime definition options:
 ### Metrics
 - RMSE on `log(V)` (numerically stable)
 - QLIKE for variance forecasts
-- MAE / MAPE (optional)
+
+## SPX sample results (GARCH, 1970+)
+
+![GARCH performance vs horizon](assets/spx_garch_horizon_metrics.png)
+
+Interpretation:
+- Longer horizons are smoother targets, so `RMSE_log_var` drops as H increases.
+- `QLIKE` is scale-dependent; compare models at the same horizon rather than across horizons.
+- This is a baseline only; it sets the reference point for ML and hybrid models.
 
 ## Install (recommended: venv)
 
@@ -174,4 +182,3 @@ Outputs:
 - Richer features (rolling stats, volume, macro or VIX-like series)
 - Alternative targets (Garman-Klass / Parkinson / intraday realized variance)
 - Hyperparameter sweeps and early stopping
-
