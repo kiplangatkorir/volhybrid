@@ -53,10 +53,14 @@ def qlike(y_true_var: np.ndarray, y_pred_var: np.ndarray) -> float:
     return float(np.mean(np.log(pred) + (true / pred)))
 
 
-def mae(y_true: np.ndarray, y_pred: np.ndarray) -> float:
-    return float(np.mean(np.abs(y_true - y_pred)))
+def mae_log_var(y_true_var: np.ndarray, y_pred_var: np.ndarray) -> float:
+    yt = np.log(y_true_var + EPS)
+    yp = np.log(y_pred_var + EPS)
+    return float(np.mean(np.abs(yt - yp)))
 
 
-def mape(y_true: np.ndarray, y_pred: np.ndarray) -> float:
-    denom = np.maximum(np.abs(y_true), EPS)
-    return float(np.mean(np.abs((y_true - y_pred) / denom)))
+def mape_log_var(y_true_var: np.ndarray, y_pred_var: np.ndarray) -> float:
+    yt = np.log(y_true_var + EPS)
+    yp = np.log(y_pred_var + EPS)
+    denom = np.maximum(np.abs(yt), EPS)
+    return float(np.mean(np.abs((yt - yp) / denom)))

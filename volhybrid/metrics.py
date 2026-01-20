@@ -1,6 +1,6 @@
 from __future__ import annotations
 import numpy as np
-from .utils import rmse_log_var, qlike, mae, mape
+from .utils import rmse_log_var, qlike, mae_log_var, mape_log_var
 
 
 def summarize_metrics(true_var: np.ndarray, pred_var: np.ndarray) -> dict:
@@ -9,6 +9,4 @@ def summarize_metrics(true_var: np.ndarray, pred_var: np.ndarray) -> dict:
     return {
         "RMSE_log_var": rmse_log_var(true_var, pred_var),
         "QLIKE": qlike(true_var, pred_var),
-        "MAE_var": mae(true_var, pred_var),
-        "MAPE_var": mape(true_var, pred_var),
     }
