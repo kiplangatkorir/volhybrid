@@ -178,7 +178,12 @@ Outputs:
   - Note: EGARCH analytic forecasts from `arch` are limited to horizon 1. For longer horizons, switch models or update the forecasting method.
 
 ## Likely next steps
-- Regime splits (high-vol vs low-vol) and DM tests
-- Richer features (rolling stats, volume, macro or VIX-like series)
-- Alternative targets (Garman-Klass / Parkinson / intraday realized variance)
-- Hyperparameter sweeps and early stopping
+
+See [UNIFIED_CHECKLIST.md](UNIFIED_CHECKLIST.md) for a comprehensive project roadmap aligning open GitHub issues with items from IMPLEMENTATION_STATUS.md.
+
+Key priorities:
+- Regime splits (high-vol vs low-vol) and DM tests (Issue #1)
+- Simple ML baselines: Linear/Ridge/Lasso, RF/XGBoost (Issue #2)
+- Fix multi-step GARCH forecasts for H>1 (Issue #3)
+- Reproducible data pipeline for S&P 500, NIFTY, JSE (Issue #4)
+- Additional metrics, alternative targets, and feature expansion (see UNIFIED_CHECKLIST.md)
