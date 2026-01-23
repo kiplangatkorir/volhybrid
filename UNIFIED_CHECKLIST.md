@@ -22,15 +22,18 @@ This table aligns open GitHub issues with items from IMPLEMENTATION_STATUS.md to
 
 ## Due Date Calculation
 
+Calculated from **2026-01-23** (checklist creation date):
 - **P0**: Within 7 days from 2026-01-23 → 2026-01-30
 - **P1**: Within 14 days from 2026-01-23 → 2026-02-06
 - **P2**: Within 30 days from 2026-01-23 → 2026-02-22
 
+*Note: These are suggested deadlines based on priority. Adjust as needed for your team's capacity.*
+
 ## Summary
 
 - **Total Items**: 9
-- **From GitHub Issues (OPEN)**: 4
-- **From IMPLEMENTATION_STATUS (NEW)**: 5
+- **From GitHub Issues (OPEN)**: 4 (verified: #1, #2, #3, #4)
+- **From IMPLEMENTATION_STATUS (NEW)**: 5 (not yet created as issues)
 - **P0 Items**: 3 (regime eval + DM, GARCH H>1 fix, data pipeline)
 - **P1 Items**: 2 (ML baselines, alternative metrics)
 - **P2 Items**: 4 (NLL, alternative targets, advanced hybrid, feature expansion)
