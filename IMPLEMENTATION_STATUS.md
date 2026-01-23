@@ -8,7 +8,7 @@ planned. It is intended as a quick, code-backed checklist to align README claims
 ### Data & Targets
 - CSV ingestion with `Date` + `Close` requirements, date sorting, and indexing.
 - Log-returns calculation.
-- Forward realized variance target: \(V_t = \sum_{i=1}^{H} r_{t+i}^2\).
+- Forward realized variance target: $\(V_t = \sum_{i=1}^{H} r_{t+i}^2\)$
 
 ### Features
 - Basic return-based features: `r`, `r^2`, rolling means of `r` and `r^2`, plus optional joins for
